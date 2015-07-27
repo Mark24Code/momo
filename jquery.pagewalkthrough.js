@@ -985,26 +985,26 @@
       // ID of the button
       jpwClose: {
         // Translation string for the button
-        i18n: 'Click here to close',
+        i18n: '跳过',
         // Whether or not to show the button.  Can be a boolean value, or a
         // function which returns a boolean value
         show: true
       },
       jpwNext: {
-        i18n: 'Next &rarr;',
+        i18n: '下一步',
         // Function which resolves to a boolean
         show: function() {
           return !isLastStep();
         }
       },
       jpwPrevious: {
-        i18n: '&larr; Previous',
+        i18n: '上一步',
         show: function() {
           return !isFirstStep();
         }
       },
       jpwFinish: {
-        i18n: 'Finish &#10004;',
+        i18n: '开始体验吧！',
         show: function() {
           return isLastStep();
         }
