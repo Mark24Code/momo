@@ -1,13 +1,11 @@
 /***
- * Author: Erwin Yusrizal
- * UX by: Tai Nguyen
- * Contributors: James West <jwwest@gmail.com>
- *               JP Adams <jpadamsonline@gmail.com>
- *               James Warwood <james.duncan.1991@googlemail.com>
- *               Craig Roberts <craig0990@googlemail.com>
- * Created On: 27/02/2013
- * Version: 2.6.7
- * Features & Bugs: https://github.com/warby-/jquery-pagewalkthrough/issues
+ * 改写作者: Mark24
+ * 原作者: Erwin Yusrizal
+ * 基于 pagewalkthrough2.6.7
+ * 原始目地址：https://github.com/warby-/jquery-pagewalkthrough/
+ * 修改于: 2015/07/27
+ * 版本: 1.0.0
+ * 建议,bug: https://github.com/Mark24Code/momo
  ***/
 
 ;(function($, window, document, undefined) {
