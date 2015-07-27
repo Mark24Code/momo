@@ -631,8 +631,8 @@
   }
 
   /**
-    /* CALLBACK
-    /*/
+  /* CALLBACK
+  /*/
 
   //callback for onLoadHidden cookie
 
