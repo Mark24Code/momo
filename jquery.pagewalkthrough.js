@@ -7,7 +7,7 @@
  * 版本: 0.1.0
  * 建议,bug: https://github.com/Mark24Code/momo
  ***/
-
+ 
 ;(function($, window, document, undefined) {
   'use strict';
 
@@ -437,8 +437,8 @@
       .appendTo($jpWalkthrough);
 
     /*Modal背景*/
-    $jpwTooltip.css({'background':step.popup.bg});
-    
+    apply_bg(step.popup.bg);
+
     $jpWalkthrough.appendTo('body');
     $jpwTooltip.show();
 
@@ -447,6 +447,17 @@
     $jpWalkthrough.show();
   }
 
+  /*
+   * 处理bg属性的函数
+   */
+  function apply_bg(bg){
+
+    if(bg.indexOf("/") !== -1){
+      $jpwTooltip.css({'background':"url("+bg+")"});
+    }else{
+      $jpwTooltip.css({'background':bg});
+    }
+  }
 
   /*
    * 显示Tooltip：SHOW TOOLTIP
@@ -524,7 +535,7 @@
             parseInt(step.popup.offsetArrowVertical, 10) :
             '';
           /*背景top*/
-         $jpwTooltip.css({'background':step.popup.bg});
+        apply_bg(step.popup.bg);
         break;
       case 'right':
         top = overlayHoleTop - (arrow / 2) +
@@ -536,7 +547,7 @@
             parseInt(step.popup.offsetArrowHorizontal, 10) :
             '';
           /*背景right*/
-          $jpwTooltip.css({'background':step.popup.bg});
+        apply_bg(step.popup.bg);
         break;
       case 'bottom':
         top = overlayHoleTop + overlayHoleHeight +
@@ -551,7 +562,7 @@
             parseInt(step.popup.offsetArrowVertical, 10) :
             '';
         /*背景buttom*/
-        $jpwTooltip.css({'background': step.popup.bg});
+        apply_bg(step.popup.bg);
         break;
       case 'left':
         top = overlayHoleTop - (arrow / 2) +
@@ -563,7 +574,7 @@
             parseInt(step.popup.offsetArrowHorizontal, 10) :
             '';
         /*背景left*/
-        $jpwTooltip.css({'background':step.popup.bg});
+        apply_bg(step.popup.bg);
         break;
     }
 
