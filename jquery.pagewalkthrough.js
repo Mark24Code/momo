@@ -452,7 +452,9 @@
    */
   function apply_bg(bg){
 
-    if(bg.indexOf("/") !== -1){
+    if(bg === undefined){
+      $jpwTooltip.css({'background':'none'});
+    }else if(bg.indexOf("/") !== -1){
       $jpwTooltip.css({'background':"url("+bg+")"});
     }else{
       $jpwTooltip.css({'background':bg});
