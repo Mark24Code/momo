@@ -4,7 +4,7 @@
  * 基于 pagewalkthrough2.6.7
  * 原始目地址：https://github.com/warby-/jquery-pagewalkthrough/
  * 修改于: 2015/07/27
- * 版本: 1.0.0
+ * 版本: 0.1.0
  * 建议,bug: https://github.com/Mark24Code/momo
  ***/
 
@@ -25,13 +25,6 @@
     _onLoad = true,
     _index = 0,
     _isWalkthroughActive = false,
-    /*自定义背景：方向是文字框所在元素的相对位置，文字框在介绍元素下就是buttom*/
-    _background_modal = 'yellow',
-    _background_top = 'none',
-    _background_buttom = 'green',
-    _background_left = 'none',
-    _background_right = 'none',
-
     $jpwOverlay = $('<div id="jpwOverlay"></div>'),
     $jpWalkthrough = $('<div id="jpWalkthrough"></div>'),
     $jpwTooltip = $('<div id="jpwTooltip"></div>');
@@ -444,7 +437,7 @@
       .appendTo($jpWalkthrough);
 
     /*Modal背景*/
-    $jpwTooltip.css({'background':_background_modal});
+    $jpwTooltip.css({'background':step.popup.bg});
     
     $jpWalkthrough.appendTo('body');
     $jpwTooltip.show();
@@ -531,7 +524,7 @@
             parseInt(step.popup.offsetArrowVertical, 10) :
             '';
           /*背景top*/
-         $jpwTooltip.css({'background':_background_top});
+         $jpwTooltip.css({'background':step.popup.bg});
         break;
       case 'right':
         top = overlayHoleTop - (arrow / 2) +
@@ -543,7 +536,7 @@
             parseInt(step.popup.offsetArrowHorizontal, 10) :
             '';
           /*背景right*/
-          $jpwTooltip.css({'background':_background_right});
+          $jpwTooltip.css({'background':step.popup.bg});
         break;
       case 'bottom':
         top = overlayHoleTop + overlayHoleHeight +
@@ -558,7 +551,7 @@
             parseInt(step.popup.offsetArrowVertical, 10) :
             '';
         /*背景buttom*/
-        $jpwTooltip.css({'background': _background_buttom});
+        $jpwTooltip.css({'background': step.popup.bg});
         break;
       case 'left':
         top = overlayHoleTop - (arrow / 2) +
@@ -570,7 +563,7 @@
             parseInt(step.popup.offsetArrowHorizontal, 10) :
             '';
         /*背景left*/
-        $jpwTooltip.css({'background':_background_left});
+        $jpwTooltip.css({'background':step.popup.bg});
         break;
     }
 
@@ -958,7 +951,9 @@
           // Default width for each popup
           width: '320',
           // Amount in degrees to rotate the content by
-          contentRotation: 0
+          contentRotation: 0,
+          //背景
+          bg:'none'
         },
         // Automatically scroll to the content for the step
         autoScroll: true,
