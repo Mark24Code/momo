@@ -12,7 +12,7 @@
   'use strict';
 
   /**
-   * GLOBAL VAR
+   * 全局变量
    */
   var _globalWalkthrough = {},
     _elements = [],
@@ -25,12 +25,19 @@
     _onLoad = true,
     _index = 0,
     _isWalkthroughActive = false,
+    /*自定义背景：方向是文字框所在元素的相对位置，文字框在介绍元素下就是buttom*/
+    _background_modal = 'yellow',
+    _background_top = 'none',
+    _background_buttom = 'green',
+    _background_left = 'none',
+    _background_right = 'none',
+
     $jpwOverlay = $('<div id="jpwOverlay"></div>'),
     $jpWalkthrough = $('<div id="jpWalkthrough"></div>'),
     $jpwTooltip = $('<div id="jpwTooltip"></div>');
 
   /**
-   * PUBLIC METHOD
+   * 公用函数
    */
 
   var methods = {
@@ -46,7 +53,7 @@
       return _index;
     },
 
-    //init method
+    //初始化init
     init: function(options) {
       options = $.extend(true, {}, $.fn.pagewalkthrough.defaults, options);
       var that = this;
@@ -388,13 +395,14 @@
       }
     }
 
+    //显示按钮
     showButton('jpwPrevious');
     showButton('jpwNext');
     showButton('jpwFinish');
   }
 
   /*
-   * SHOW MODAL
+   * 显示MODAL主题：SHOW MODAL
    */
 
   function showModal() {
@@ -410,10 +418,10 @@
       'left': '50%',
       'top': '25%',
       'margin-left': -(parseInt(step.popup.width, 10) + 60) / 2 + 'px',
-      'z-index': '999999'
+      'z-index': '999999',
     });
 
-    var tooltipSlide = $('<div id="tooltipTop">' +
+    var tooltipSlide = $('<div id="tooltipTop" style="background:red;z-index: 10000;">' +
       '<div id="topLeft"></div>' +
       '<div id="topRight"></div>' +
       '</div>' +
@@ -435,19 +443,20 @@
       .append('<div id="bottom-scratch"></div>')
       .appendTo($jpWalkthrough);
 
+    /*Modal背景*/
+    $jpwTooltip.css({'background':_background_modal});
+    
     $jpWalkthrough.appendTo('body');
     $jpwTooltip.show();
 
     $('#tooltipWrapper').css(textRotation);
-
     $('#tooltipInner').append(getContent(step)).show();
-
     $jpWalkthrough.show();
   }
 
 
   /*
-   * SHOW TOOLTIP
+   * 显示Tooltip：SHOW TOOLTIP
    */
 
   function showTooltip() {
@@ -488,7 +497,7 @@
       'margin-left': '0',
       'margin-top': '0',
       'position': 'absolute',
-      'z-index': '999999'
+      'z-index': '999999',
     })
       .append(tooltipSlide)
       .wrapInner($('<div />', {
@@ -507,6 +516,7 @@
         '<span class="' + step.popup.position + '">&nbsp;</span>'
     );
 
+    /*四个方向*/
     switch (step.popup.position) {
 
       case 'top':
@@ -520,6 +530,8 @@
         arrowTop = (step.popup.offsetArrowVertical) ?
             parseInt(step.popup.offsetArrowVertical, 10) :
             '';
+          /*背景top*/
+         $jpwTooltip.css({'background':_background_top});
         break;
       case 'right':
         top = overlayHoleTop - (arrow / 2) +
@@ -530,6 +542,8 @@
         arrowLeft = (step.popup.offsetArrowHorizontal) ?
             parseInt(step.popup.offsetArrowHorizontal, 10) :
             '';
+          /*背景right*/
+          $jpwTooltip.css({'background':_background_right});
         break;
       case 'bottom':
         top = overlayHoleTop + overlayHoleHeight +
@@ -543,6 +557,8 @@
         arrowTop = (step.popup.offsetArrowVertical) ?
             parseInt(step.popup.offsetArrowVertical, 10) :
             '';
+        /*背景buttom*/
+        $jpwTooltip.css({'background': _background_buttom});
         break;
       case 'left':
         top = overlayHoleTop - (arrow / 2) +
@@ -553,6 +569,8 @@
         arrowLeft = (step.popup.offsetArrowVertical) ?
             parseInt(step.popup.offsetArrowHorizontal, 10) :
             '';
+        /*背景left*/
+        $jpwTooltip.css({'background':_background_left});
         break;
     }
 
