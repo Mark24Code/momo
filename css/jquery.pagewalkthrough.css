@@ -117,6 +117,11 @@
   background-color: none !important;
 }
 
+/*进度条*/
+#buttomMiddle{
+  color: red;
+}
+
 /*关闭按钮*/
 #jpwClose {
   position: fixed;
