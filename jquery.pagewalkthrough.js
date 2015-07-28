@@ -25,6 +25,10 @@
     _onLoad = true,
     _index = 0,
     _isWalkthroughActive = false,
+    /*进度*/
+    _cur_step= false,
+    _all_step = false,
+
     $jpwOverlay = $('<div id="jpwOverlay"></div>'),
     $jpWalkthrough = $('<div id="jpWalkthrough"></div>'),
     $jpwTooltip = $('<div id="jpwTooltip"></div>');
@@ -50,6 +54,8 @@
     init: function(options) {
       options = $.extend(true, {}, $.fn.pagewalkthrough.defaults, options);
       var that = this;
+      /*进度长度*/
+      _all_step = options.steps.length-1;
 
       if (!options.name) {
         throw new Error('Must provide a unique name for a tour');
@@ -189,6 +195,9 @@
 
       if (!onLeave(e)) return;
       _index = parseInt(_index, 10) + 1;
+      /*添加进度*/
+      _cur_step = _index;
+
       if (!onEnter(e)) {
           methods.next();
       }
@@ -200,6 +209,9 @@
 
       if (!onLeave(e)) return;
       _index = parseInt(_index, 10) - 1;
+      /*添加进度*/
+      _cur_step = _index;
+
       if (!onEnter(e)) {
         methods.prev();
       }
@@ -452,7 +464,7 @@
    */
   function apply_bg(bg){
 
-    if(bg === undefined){
+    if(bg =="none"){
       $jpwTooltip.css({'background':'none'});
     }else if(bg.indexOf("/") !== -1){
       $jpwTooltip.css({'background':"url("+bg+")"});
@@ -496,6 +508,7 @@
 
     '<div id="tooltipBottom">' +
       '<div id="bottomLeft"></div>' +
+      '<div id="buttomMiddle">'+_cur_step+'/'+_all_step+'</div>'+
       '<div id="bottomRight"></div>' +
       '</div>');
 
